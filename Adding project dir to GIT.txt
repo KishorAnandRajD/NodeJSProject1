@@ -1,0 +1,348 @@
+Steps to move your local files to github using commands
+Step I. Install git in your local PC
+Step II.Add your local files to git cache
+Step III. Commit the git cache
+Step IV. Now we have to push the git code to GITHUB
+Step V. Create ssh keys from local and add  it agent and then configure in GITHUB settings
+Step VI. Now you can upload files to github from local PC
+
+
+
+***************************************************
+Detailed steps
+****************************************************
+
+
+
+Install the git from https://git-scm.com/download/win
+
+1.Add your project to git
+
+2. Goto your project dir
+
+3. Type the command 'git init'
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git init
+Initialized empty Git repository in E:/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver/.git/
+
+A .git folder gets created
+
+4. check >git status
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        node_modules/
+        package-lock.json
+        package.json
+        public/
+        server.js
+        server_bkup1_basic.js
+        server_bkup2_accessHTMLfromPublicfolder.js
+        views/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+5. add the first file > git add package.json
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git add package.json
+warning: LF will be replaced by CRLF in package.json.
+The file will have its original line endings in your working directory.
+
+
+6. Now get the status >git status
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   package.json
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        node_modules/
+        package-lock.json
+        public/
+        server.js
+        server_bkup1_basic.js
+        server_bkup2_accessHTMLfromPublicfolder.js
+        views/
+
+7. Add the next files and get status
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git add public
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   package.json
+        new file:   public/help.html
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        node_modules/
+        package-lock.json
+        server.js
+        server_bkup1_basic.js
+        server_bkup2_accessHTMLfromPublicfolder.js
+        views/
+
+8. To ignore files in git, the best practise is to create a file .gitignore in the root dir of the project and list the files to be ignored.. eg: node_modules
+
+Get status after adding node_modules to the .gitignore
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   package.json
+        new file:   public/help.html
+        new file:   server.js
+        new file:   views/about.hbs
+        new file:   views/home.hbs
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .gitignore
+        package-lock.json
+        server_bkup1_basic.js
+        server_bkup2_accessHTMLfromPublicfolder.js
+
+9. Finally add the gitignore and get the status
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git add .gitignore
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   .gitignore
+        new file:   package.json
+        new file:   public/help.html
+        new file:   server.js
+        new file:   server_bkup1_basic.js
+        new file:   server_bkup2_accessHTMLfromPublicfolder.js
+        new file:   views/about.hbs
+        new file:   views/home.hbs
+
+10. Till now the details were saved in cache. To do a COMMIT use command with some custom comments
+ >git commit -m 'Initial commmit Kishor'
+
+Since I haven't logged in, I got the below error
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git commit
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'Kishor@Kishor-PC.(none)')
+
+11. configure your git email
+>git config --global user.email "kishor.dharmakan@gmail.com"
+
+12. Run the commit command
+>git commit -m 'Kishor'
+
+E:\Kishor\Udemy\NodeJS\NodeJSProjects\nodewebserver>git commit -m 'kishor'
+[master (root-commit) 181824a] 'kishor'
+ 8 files changed, 204 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 package.json
+ create mode 100644 public/help.html
+ create mode 100644 server.js
+ create mode 100644 server_bkup1_basic.js
+ create mode 100644 server_bkup2_accessHTMLfromPublicfolder.js
+ create mode 100644 views/about.hbs
+ create mode 100644 views/home.hbs
+
+###########################################################
+13. To Push the git code to GITHUB
+
+First step is to Set up ssh keys
+
+https://help.github.com/articles/connecting-to-github-with-ssh/
+
+https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
+14.Run the following command >ssh-keygen -t rsa -b 4096 -C "kishor.dharmakan@gmail.com"
+
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ ssh-keygen -t rsa -b 4096 -C "kishor.dharmakan@gmail.com"
+Generating public/private rsa key pair.
+
+
+15. When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ ssh-keygen -t rsa -b 4096 -C "kishor.dharmakan@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/Kishor/.ssh/id_rsa):
+
+
+16. At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases".
+
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ ssh-keygen -t rsa -b 4096 -C "kishor.dharmakan@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/Kishor/.ssh/id_rsa):
+Created directory '/c/Users/Kishor/.ssh'.
+Enter passphrase (empty for no passphrase):
+
+
+17. Type the passphrase as > kishordharmakan
+
+
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/Kishor/.ssh/id_rsa.
+Your public key has been saved in /c/Users/Kishor/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:Sl6R0eW1V4xRMA6Ahu976zJKhJgaNJRRB9oASTtIrNQ kishor.dharmakan@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|=B=o.. ..o.oo =*o|
+|=+=E. . oo.. +.oo|
+|+* .   oo   . o .|
+|o oo .  ..     . |
+|. o . o.S        |
+| o   + o.        |
+|.     +  .       |
+|     .  + .      |
+|      .. =o.     |
++----[SHA256]-----+
+
+18. Adding your key to the ssh agent
+
+Ensure the ssh-agent is running by typing the command >eval $(ssh-agent -s)
+
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ eval $(ssh-agent -s)
+Agent pid 12048
+
+19.Add your SSH private key to the ssh-agent. If you created your key with a different name, or if you are adding an existing key that has a different name, replace id_rsa in the command with the name of your private key file.
+
+command>  ssh-add ~/.ssh/id_rsa
+
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ ssh-add ~/.ssh/id_rsa
+Enter passphrase for /c/Users/Kishor/.ssh/id_rsa:
+
+20. Add the passphrase
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ ssh-add ~/.ssh/id_rsa
+Enter passphrase for /c/Users/Kishor/.ssh/id_rsa:kishordharmakan
+Identity added: /c/Users/Kishor/.ssh/id_rsa (/c/Users/Kishor/.ssh/id_rsa)
+
+##############################################
+21.Adding a new SSH key to your GitHub account
+https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+
+22. Copy the SSH key to your clipboard. Use the command > clip < ~/.ssh/id_rsa.pub
+
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ clip < ~/.ssh/id_rsa.pub
+
+
+23. Paste clipboard contents to a notepad
+
+24. Login to github https://github.com/settings/profile
+
+In the upper-right corner of any page, click your profile photo, then click Settings.
+
+25. In the user settings sidebar, click SSH and GPG keys.
+
+26. Click New SSH key or Add SSH key.
+
+27. In the "Title" field, add a descriptive label for the new key. For example, if you're using a personal Mac, you might call this key "Personal MacBook Air".
+
+Title: First git contents moved to github
+
+28. Paste your key into the "Key" field.
+
+29. Click Add SSH key. If prompted, confirm your GitHub password.
+
+28. You will get a email notification to gmail
+
+##################################################
+29. Now go back to the terminal and type the command to check if the communication from your PC to github is good.. >ssh -T git@github.com
+
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ ssh -T git@github.com
+The authenticity of host 'github.com (192.30.255.112)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)?
+
+30. Type 'yes'
+
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,192.30.255.112' (RSA) to the list of known hosts.
+Hi KishorAnandRajD! You've successfully authenticated, but GitHub does not provide shell access.
+
+31. Connected
+
+32. Login to Github and create a new repository
+
+33. Choose "…or push an existing repository from the command line"
+  Copy the following command from that place and run
+  > git remote add origin https://github.com/KishorAnandRajD/NodeJSProject1.git
+
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ git remote add origin https://github.com/KishorAnandRajD/NodeJSProject1.git
+
+34. Copy the second command and run >git push -u origin master
+
+35. If it shows up login box, please enter details
+
+Kishor@Kishor-PC MINGW64 /e/Kishor/Udemy/NodeJS/NodeJSProjects/nodewebserver (master)
+$ git push -u origin master
+Counting objects: 12, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (12/12), 2.11 KiB | 0 bytes/s, done.
+Total 12 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), done.
+To https://github.com/KishorAnandRajD/NodeJSProject1.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+
+36. Now goto the repository and you can see the files uploaded
+
+
+
+
+
+
+
+
